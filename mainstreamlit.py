@@ -13,3 +13,8 @@ list_patient += [email,gender,symptoms,weight]
 print(list_patient)
 
 #streamlit run mainstreamlit.py
+#create function submit
+#voir un code type sikitleanr pour comprendre comment commenter 
+#faire un schema user story tout ce que l'utilisateur peut faire avec l'application
+#faire un tableau de bord genre feuille excel, c'est à dire le temps qu'on a passé à faire quoi, voir le chemin
+#faire fonctionner le backend et le front end ensemble

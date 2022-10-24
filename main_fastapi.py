@@ -27,7 +27,7 @@ def get_users():
 def get_users_path(patient_name: str):
     return user_db[patient_name]
 
-@app.post("/users")
+@app.post("/user_create")
 def create_patient(user: Patient):
     patient_name =user.patient_name
     user_db[patient_name] = user.dict()
