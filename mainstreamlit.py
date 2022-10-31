@@ -1,20 +1,35 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import requests
+import json
 
+st.title("Welcome to the ADSUM app")
 
-email = st.text_input('Email address')
-gender = st.radio('Pick your gender',['Male','Female'])
-symptoms = st.text_area('Input symptoms of the patient')
+#Creates the variables input by the user
+patient_name =st.text_area('Give name of the patient')
+age = st.slider('Put the age of the patient', 0,100)
 weight = st.slider('Put a weight on the gravity of symptoms of the patient', 0,10)
+symptoms = st.text_area('Input symptoms of the patient')
 
-list_patient = []
-list_patient += [email,gender,symptoms,weight]
-print(list_patient)
+
+param = st.text_area('Input one parameter of the patient for a search')
+
+#Put the variables into dictionnaries understable for the backend
+
+inputsadd = {"patient_name" : patient_name, "age" : age, "weight" : weight, "symptoms" : symptoms }
+inputsshow = {"param" : param}
+
+#Buttons created to launch the functions
+
+if st.button("Add patient"):
+    res = requests.post(url = "http://127.0.0.1:8000/add", data = json.dumps(inputsadd) )
+    st.subheader(f"Response from api = {res.text}")
+
+if st.button("show patient"):
+    res = requests.post(url = "http://127.0.0.1:8000/show", data = json.dumps(inputsshow) )
+    st.subheader(f"Response from api = {res.text}")
+
 
 #streamlit run mainstreamlit.py
-#create function submit
-#voir un code type sikitleanr pour comprendre comment commenter 
-#faire un schema user story tout ce que l'utilisateur peut faire avec l'application
-#faire un tableau de bord genre feuille excel, c'est à dire le temps qu'on a passé à faire quoi, voir le chemin
-#faire fonctionner le backend et le front end ensemble
+#to run the code, do it after the backend

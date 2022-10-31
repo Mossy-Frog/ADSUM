@@ -1,35 +1,33 @@
 from fastapi import FastAPI, File, UploadFile, Form
 from pydantic import BaseModel
+from show_patient import patient_show
+from add_patient import patient_add
+#launch the fastapi app
 app = FastAPI() #uvicorn main_fastapi:app --reload
 
-
-class Patient(BaseModel):
+#Create class for each functions
+class User_inputadd(BaseModel):
     patient_name :str
-    date_joined : str
-    location : str
-    symptoms : str
     age : int
+    weight : int
+    symptoms : str
+
+class User_inputshow(BaseModel):
+    param : str
+
+#create callable functions 
+
+@app.post('/show')
+def operate(input:User_inputshow):
+    result = patient_show(input.param)
+    return result
 
 
-user_db = {
-    'jack': {'patient_name': 'jack', 'date_joined': '2021-12-01', 'location': 'New York', 'age': 28, "symptoms": "cough"},
-    'jill': {'patient_name': 'jill', 'date_joined': '2021-12-02', 'location': 'Los Angeles', 'age': 19, "symptoms": "runny_nose"},
-    'jane': {'patient_name': 'jane', 'date_joined': '2021-12-03', 'location': 'Toronto', 'age': 52,"symptoms": "amnesia"}
-}
-
-@app.get('/users')
-def get_users():
-    user_list = list(user_db.values())
-    return user_list
+@app.post('/add')
+def operateadd(input : User_inputadd):
+    resultadd= patient_add(input.patient_name,input.age,input.weight,input.symptoms)
+    return resultadd
 
 
-@app.get('/users/{patient_name}')
-def get_users_path(patient_name: str):
-    return user_db[patient_name]
-
-@app.post("/user_create")
-def create_patient(user: Patient):
-    patient_name =user.patient_name
-    user_db[patient_name] = user.dict()
-    return {"message": f"Successfully created patient : {patient_name}"}
-
+##uvicorn main_fastapi:app --reload 
+#to launch the back end
