@@ -4,11 +4,9 @@ import sklearn
 import pandas as pd
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-
-
+import warnings
+warnings.filterwarnings("ignore")
 def AIprediction(AIsymptoms):
-    import warnings
-    warnings.filterwarnings("ignore")
     os.chdir('c:/Users/Maxence/Desktop/BT5/ADSUM')
     os.listdir()
 
