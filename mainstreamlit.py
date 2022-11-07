@@ -15,10 +15,17 @@ symptoms = st.text_area('Input symptoms of the patient')
 
 param = st.text_area('Input one parameter of the patient for a search')
 
+AIsymptoms = st.text_area('Input symptoms of a patient to launch the AI')
+
 #Put the variables into dictionnaries understable for the backend
 
 inputsadd = {"patient_name" : patient_name, "age" : age, "weight" : weight, "symptoms" : symptoms }
 inputsshow = {"param" : param}
+
+
+inputsAI = {"AIsymptoms" : AIsymptoms}
+
+
 
 #Buttons created to launch the functions
 
@@ -28,6 +35,10 @@ if st.button("Add patient"):
 
 if st.button("show patient"):
     res = requests.post(url = "http://127.0.0.1:8000/show", data = json.dumps(inputsshow) )
+    st.subheader(f"Response from api = {res.text}")
+
+if st.button("Launch AI"):
+    res = requests.post(url = "http://127.0.0.1:8000/AI", data = json.dumps(inputsAI) )
     st.subheader(f"Response from api = {res.text}")
 
 

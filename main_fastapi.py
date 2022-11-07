@@ -2,6 +2,7 @@ from fastapi import FastAPI, File, UploadFile, Form
 from pydantic import BaseModel
 from show_patient import patient_show
 from add_patient import patient_add
+from addAI import AIprediction
 #launch the fastapi app
 app = FastAPI() #uvicorn main_fastapi:app --reload
 
@@ -14,6 +15,9 @@ class User_inputadd(BaseModel):
 
 class User_inputshow(BaseModel):
     param : str
+
+class User_inputAI(BaseModel):
+    AIsymptoms : str
 
 #create callable functions 
 
@@ -29,5 +33,12 @@ def operateadd(input : User_inputadd):
     return resultadd
 
 
+@app.post('/AI')
+def operateadd(input : User_inputAI):
+    resultAI= AIprediction(input.AIsymptoms)
+    return resultAI
+
+
 ##uvicorn main_fastapi:app --reload 
 #to launch the back end
+#cd Desktop/BT5/ADSUM
