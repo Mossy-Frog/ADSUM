@@ -41,5 +41,5 @@ def operateadd(input : User_inputAI):
 
 ##uvicorn main_fastapi:app --reload 
 #to launch the back end
-#cd Desktop/BT5/ADSUM/backend
+#cd Desktop/BT5/ADSUM
 #this will be merged in the main

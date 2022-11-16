@@ -43,6 +43,6 @@ if st.button("Launch AI"):
     res = requests.post(url = "http://127.0.0.1:8000/AI", data = json.dumps(inputsAI) )
     st.subheader(f"Response from api = {res.text}")
 
-
+#cd Desktop/BT5/ADSUM/frontend
 #streamlit run mainstreamlit.py
 #to run the code, do it after the backend

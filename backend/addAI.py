@@ -8,7 +8,7 @@ import warnings
 import shap
 warnings.filterwarnings("ignore")
 def AIprediction(AIsymptoms):
-    os.chdir('c:/Users/Maxence/Desktop/BT5/ADSUM')
+    os.chdir('c:/Users/Maxence/Desktop/BT5/ADSUM/backend')
     os.listdir()
 
     fileDB = joblib.load("list_symptoms.sav")
