@@ -5,6 +5,7 @@ import pandas as pd
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import warnings
+import shap
 warnings.filterwarnings("ignore")
 def AIprediction(AIsymptoms):
     os.chdir('c:/Users/Maxence/Desktop/BT5/ADSUM')
@@ -27,4 +28,14 @@ def AIprediction(AIsymptoms):
         elif j in fileDB:
             a = fileDB.index(j)
             list_pred[a]+=1
-    return fileAI.predict([list_pred])[0]
+    probalist = fileAI.predict_proba([list_pred])[0]
+    probalist = probalist.tolist()
+    classes = fileAI.classes_
+    maxprobas = []
+    synclass = []
+    for i in range(3):
+        maxprobas.append(max(probalist))
+        synclass.append(classes[probalist.index(max(probalist))])
+        probalist.remove(max(probalist))
+    fintext = "La première possibilité est "+ str(synclass[0]) + " avec une probabilité de " + str(maxprobas[0]) + " la deuxième probabilité est " + str(synclass[1]) + " avec " + str(maxprobas[1]) + " et la dernière " + str(synclass[2]) +" Avec " + str(maxprobas[2])    
+    return fintext

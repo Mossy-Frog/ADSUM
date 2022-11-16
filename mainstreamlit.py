@@ -17,6 +17,8 @@ param = st.text_area('Input one parameter of the patient for a search')
 
 AIsymptoms = st.text_area('Input symptoms of a patient to launch the AI')
 
+
+
 #Put the variables into dictionnaries understable for the backend
 
 inputsadd = {"patient_name" : patient_name, "age" : age, "weight" : weight, "symptoms" : symptoms }
