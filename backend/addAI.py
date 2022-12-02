@@ -1,22 +1,18 @@
 #Import all modules
-import joblib, os, pickle
-from joblib import load
+import pickle
 import sklearn
 import pandas as pd
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import warnings
-import shap
+
 #remove unwanted warnings
 warnings.filterwarnings("ignore")
 #def the function that will be called by the backend
 def AIprediction(AIsymptoms):
-    #need to be fixed, tells where to look for files
-    os.chdir('c:/Users/Maxence/Desktop/BT5/ADSUM/backend')
-    os.listdir()
     #load list of symptoms in the DB
-    fileDB = joblib.load("list_symptoms.sav")
-
+    with open('list_symptoms.sav' , 'rb') as f:
+        fileDB = pickle.load(f)
     #load AI
     with open('adsum_model.sav' , 'rb') as f:
         fileAI = pickle.load(f)
