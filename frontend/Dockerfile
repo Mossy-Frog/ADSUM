@@ -6,7 +6,4 @@ COPY . /app
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8501
-
-ENTRYPOINT ["streamlit","run"]
-CMD ["mainstreamlit.py"]
+CMD streamlit run --server.port 8501 --server.enableCORS false mainstreamlit.py

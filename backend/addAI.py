@@ -5,11 +5,15 @@ import pandas as pd
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import warnings
+import skopt
+import nltk
 
 #remove unwanted warnings
 warnings.filterwarnings("ignore")
 #def the function that will be called by the backend
 def AIprediction(AIsymptoms):
+    nltk.download('punkt')
+    nltk.download("stopwords")
     #load list of symptoms in the DB
     with open('list_symptoms.sav' , 'rb') as f:
         fileDB = pickle.load(f)
@@ -47,3 +51,7 @@ def AIprediction(AIsymptoms):
     fintext = "La première possibilité est "+ str(synclass[0]) + " avec une probabilité de " + str(maxprobas[0]) + " la deuxième probabilité est " + str(synclass[1]) + " avec " + str(maxprobas[1]) + " et la dernière " + str(synclass[2]) +" Avec " + str(maxprobas[2])   
     #return the text for the backend then the frontend 
     return fintext
+
+
+
+#C:/Users/Maxence/Desktop/BT5/ADSUM/backend/

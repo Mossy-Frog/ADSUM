@@ -30,17 +30,18 @@ inputsAI = {"AIsymptoms" : AIsymptoms}
 #Buttons created to launch the functions
 
 if st.button("Add patient"):
-    res = requests.post(url = "http://127.0.0.1:8000/add", data = json.dumps(inputsadd) )
+    res = requests.post(url = "http://api/add", data = json.dumps(inputsadd) )
     st.subheader(f"Response from api = {res.text}")
 
 if st.button("show patient"):
-    res = requests.post(url = "http://127.0.0.1:8000/show", data = json.dumps(inputsshow) )
+    res = requests.post(url = "http://api:8000/show", data = json.dumps(inputsshow) )
     st.subheader(f"Response from api = {res.text}")
 
 if st.button("Launch AI"):
-    res = requests.post(url = "http://127.0.0.1:8000/AI", data = json.dumps(inputsAI) )
+    res = requests.post(url = "http://api:8000/AI", data = json.dumps(inputsAI) )
     st.subheader(f"Response from api = {res.text}")
 
 #cd Desktop/BT5/ADSUM/frontend
 #streamlit run mainstreamlit.py
 #to run the code, do it after the backend
+#to run local replace api by 127.0.0.1
