@@ -1,0 +1,21 @@
+version: "3"
+services:
+  api:
+    container_name: main_fastapi
+    #build: backend/.
+    image : backimage
+    ports:
+      - "8000:8000"
+#    networks: #user defined network bridge for all containers
+#      - jcnet
+
+  app:
+    container_name: myapp
+    #build: frontend/.
+    image: frontimage
+    ports:
+      - "8501:8501"
+#    networks:
+#      - jcnet
+#networks:
+#  jcnet
